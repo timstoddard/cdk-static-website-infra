@@ -19,21 +19,22 @@ interface CloudFrontStackProps extends cdk.StackProps {
 
 export class CloudFrontStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: CloudFrontStackProps) {
-    super(scope, id, props)
-
     const {
       websiteUrl,
       websiteDescription,
       publicSSLCertificateArn,
     } = props
+    const formattedUrl = websiteUrl.replace(/[^a-z0-9-]+/gi, '-')
+    super(scope, `${id}-${formattedUrl}`, props)
+
     const {
       bucketName,
       bucketId,
     } = this.getBucketNameAndId(websiteUrl)
     const websiteBucket = this.createS3Bucket(bucketName, bucketId)
-   
+
     // set up CF Distribution to serve content from S3 bucket securely
-    const cdn = new cloudfront.Distribution(this, `${bucketId}-cdn`, {
+    new cloudfront.Distribution(this, `${bucketId}-cdn`, {
       defaultBehavior: {
         origin: new origins.S3Origin(websiteBucket, {
           originAccessIdentity: this.createOAI(bucketId),
