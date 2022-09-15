@@ -194,7 +194,7 @@ export class CloudFrontStack extends cdk.Stack {
         // TODO set this to show custom page
         responsePagePath: undefined,
       },
-      // TODO add other  status codes?
+      // TODO add other status codes?
     ]
   }
 }

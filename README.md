@@ -1,9 +1,11 @@
-# Welcome to your CDK TypeScript project
+# AWS CDK Project: Static Website Infrastructure
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`CdkTestStack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+Creates a CloudFront distribution associated with the following resources:
+- an S3 bucket to serve website files from
+- an origin access identity for CloudFront to access the bucket
+- a public SSL certificate for the website's custom domain name (user must provide the ARN of this)
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The `cdk.json` file tells the CDK Toolkit how to execute the app.
 
 ## Useful commands
 
