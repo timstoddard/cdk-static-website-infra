@@ -8,8 +8,12 @@ node_modules
 # temp files for cdk
 built-files
 built-files/*
-output-s3-bucket-name
+cdk-output-data
 
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+# dotenv environment variables file
+.env
+.env.test
